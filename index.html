@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background-image: url("the setting sun.png");
             background-size: cover;
@@ -23,46 +22,42 @@
             font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
             padding: 0 1.5rem;
         }
-
         .title-wrapper {
             margin-top: 8vh;
             text-align: center;
         }
-
         .main-title {
             font-size: 4.2rem;
             font-weight: 800;
             letter-spacing: 2px;
-            color: #0a2f44;           /* 深蓝色，与夕阳暖色形成对比 */
-            text-shadow: 2px 2px 8px rgba(255, 215, 150, 0.6); /* 暖色柔光 */
+            color: #0a2f44;
+            text-shadow: 2px 2px 8px rgba(255, 215, 150, 0.6);
         }
-
         .button-wrapper {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
         .card-button {
-            background: rgba(255, 250, 240, 0.95); /* 暖白半透明 */
+            background: rgba(255, 250, 240, 0.95);
             backdrop-filter: blur(4px);
             border-radius: 2rem;
             padding: 1.6rem 2rem;
             width: 280px;
-            cursor: pointer;
             transition: all 0.25s ease;
             box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.25);
             border: 1px solid rgba(255, 255, 200, 0.8);
             text-align: center;
         }
-
         .card-button:hover {
             transform: translateY(-6px);
             background: rgba(255, 245, 235, 1);
-            box-shadow: 0 30px 40px -14px rgba(0, 0, 0, 0.3);
         }
-
+        .card-button a {
+            text-decoration: none;
+            display: block;
+        }
         .card-button span {
             font-size: 2rem;
             font-weight: 700;
@@ -71,21 +66,11 @@
             -webkit-background-clip: text;
             color: transparent;
         }
-
         @media (max-width: 500px) {
-            .title-wrapper {
-                margin-top: 6vh;
-            }
-            .main-title {
-                font-size: 2.8rem;
-            }
-            .card-button {
-                width: 240px;
-                padding: 1.2rem 1.5rem;
-            }
-            .card-button span {
-                font-size: 1.6rem;
-            }
+            .title-wrapper { margin-top: 6vh; }
+            .main-title { font-size: 2.8rem; }
+            .card-button { width: 240px; padding: 1.2rem 1.5rem; }
+            .card-button span { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -95,7 +80,9 @@
     </div>
     <div class="button-wrapper">
         <div class="card-button">
-            <span>📇 Flash card</span>
+            <a href="flashcards.html">
+                <span>📇 Flash card</span>
+            </a>
         </div>
     </div>
 </body>
