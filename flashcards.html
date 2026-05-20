@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>U.S. Citizenship Test · Flash Cards (1-20)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background-image: url("the setting sun.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            padding: 1.5rem;
+        }
+
+        .flashcard-app {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(30, 40, 50, 0.25);
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem;
+            padding: 1.5rem 1.8rem 1.8rem;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.3);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .back-home {
+            background: rgba(255,255,240,0.8);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: #1e3a5f;
+            backdrop-filter: blur(2px);
+            transition: 0.2s;
+        }
+        .back-home:hover {
+            background: white;
+        }
+        .progress {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 40px;
+            color: #fef9e3;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .flashcard {
+            background: rgba(255, 250, 240, 0.96);
+            border-radius: 2rem;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,245,220,0.8);
+        }
+        .flashcard:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 28px 35px -12px rgba(0,0,0,0.25);
+        }
+        .card-inner {
+            padding: 2rem 1.8rem;
+            width: 100%;
+        }
+        .card-label {
+            font-size: 0.8rem;
+            background: #f0e6d2;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            color: #7b4a2e;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .card-text {
+            font-size: 1.55rem;
+            font-weight: 550;
+            color: #2c3e2f;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+        .flip-hint {
+            margin-top: 12px;
+            font-size: 0.7rem;
+            color: #a57c5c;
+            opacity: 0.7;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 1.5rem 0 1rem;
+        }
+        .btn {
+            background: rgba(255,250,235,0.9);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+            color: #2c4b36;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: #4a6a3b;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover {
+            background: #2e4a23;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: rgba(255,248,235,0.95);
+            border: 1px solid #cbbfaa;
+        }
+        .btn-outline:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        .btn-warning {
+            background: #eeddbb;
+            color: #7a4c2c;
+        }
+
+        .edit-area {
+            background: rgba(245, 235, 215, 0.9);
+            border-radius: 1.5rem;
+            padding: 1rem 1.2rem;
+            margin-top: 1rem;
+            backdrop-filter: blur(2px);
+        }
+        .edit-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #4a3b28;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .edit-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .edit-fields input, .edit-fields textarea {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 28px;
+            border: 1px solid #c7b28b;
+            background: #fffef7;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+        .edit-fields textarea {
+            resize: vertical;
+        }
+        .small-btn {
+            padding: 6px 14px;
+            font-size: 0.75rem;
+        }
+        .reset-btn {
+            background: #d9c2a7;
+            margin-top: 5px;
+        }
+        footer {
+            font-size: 0.65rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: #efebd0;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+        }
+        @media (max-width: 550px) {
+            .flashcard-app { padding: 1rem; }
+            .card-text { font-size: 1.2rem; }
+            .btn { padding: 6px 12px; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="flashcard-app">
+    <div class="top-bar">
+        <a href="index.html" class="back-home">← Back to Home</a>
+        <div class="progress" id="progressIndicator">Card 1 / 20</div>
+    </div>
+
+    <div class="flashcard" id="flashcard">
+        <div class="card-inner">
+            <div class="card-label" id="sideLabel">📖 Question</div>
+            <div class="card-text" id="cardText">Loading...</div>
+            <div class="flip-hint">👇 Click to flip</div>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="btn btn-outline" id="prevBtn">◀ Previous</button>
+        <button class="btn btn-outline" id="randomBtn">🎲 Random</button>
+        <button class="btn btn-outline" id="nextBtn">Next ▶</button>
+        <button class="btn btn-primary" id="flipBtn">🔄 Flip</button>
+    </div>
+
+    <div class="edit-area">
+        <div class="edit-title">✏️ Edit current card (changes auto-save)</div>
+        <div class="edit-fields">
+            <input type="text" id="editFront" placeholder="Front (question)">
+            <textarea id="editBack" rows="2" placeholder="Back (answer)"></textarea>
+        </div>
+        <div style="display: flex; gap: 8px; justify-content: space-between; flex-wrap: wrap;">
+            <button class="btn small-btn" id="updateCardBtn">💾 Save changes</button>
+            <button class="btn small-btn reset-btn" id="resetDefaultBtn">⟳ Reset all 20 cards</button>
+        </div>
+    </div>
+    <footer>📌 Data saved automatically in your browser | Click card to flip | Based on official USCIS test questions 1-20</footer>
+</div>
+
+<script>
+    // ---------- Default cards exactly following the document (English only) ----------
+    const DEFAULT_CARDS = [
+        { front: "What is the supreme law of the land?", back: "the Constitution" },
+        { front: "What does the Constitution do?", back: "sets up the government / defines the government / protects basic rights of Americans" },
+        { front: "The idea of self-government is in the first three words of the Constitution. What are these words?", back: "We the People" },
+        { front: "What is an amendment?", back: "a change (to the Constitution) / an addition (to the Constitution)" },
+        { front: "What do we call the first ten amendments to the Constitution?", back: "the Bill of Rights" },
+        { front: "What is one right or freedom from the First Amendment?*", back: "speech / religion / assembly / press / petition the government" },
+        { front: "How many amendments does the Constitution have?", back: "twenty-seven (27)" },
+        { front: "What did the Declaration of Independence do?", back: "announced our independence (from Great Britain) / declared our independence (from Great Britain) / said that the United States is free (from Great Britain)" },
+        { front: "What are two rights in the Declaration of Independence?", back: "life / liberty / pursuit of happiness" },
+        { front: "What is freedom of religion?", back: "You can practice any religion, or not practice a religion." },
+        { front: "What is the economic system in the United States?*", back: "capitalist economy / market economy" },
+        { front: "What is the 'rule of law'?", back: "Everyone must follow the law. / Leaders must obey the law. / Government must obey the law. / No one is above the law." },
+        { front: "Name one branch or part of the government.*", back: "Congress / legislative / President / executive / the courts / judicial" },
+        { front: "What stops one branch of government from becoming too powerful?", back: "checks and balances / separation of powers" },
+        { front: "Who is in charge of the executive branch?", back: "the President" },
+        { front: "Who makes federal laws?", back: "Congress / Senate and House (of Representatives) / (U.S. or national) legislature" },
+        { front: "What are the two parts of the U.S. Congress?*", back: "the Senate and House (of Representatives)" },
+        { front: "How many U.S. Senators are there?", back: "one hundred (100)" },
+        { front: "We elect a U.S. Senator for how many years?", back: "six (6)" },
+        { front: "Who is one of your state's U.S. Senators now?*", back: "Patty Murray (D), Maria Cantwell (D)" }
+    ];
+
+    let cards = [];
+    let currentIndex = 0;
+    let showAnswer = false;
+
+    const flashcardDiv = document.getElementById('flashcard');
+    const cardTextEl = document.getElementById('cardText');
+    const sideLabelEl = document.getElementById('sideLabel');
+    const progressIndicator = document.getElementById('progressIndicator');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const randomBtn = document.getElementById('randomBtn');
+    const flipBtn = document.getElementById('flipBtn');
+    const editFront = document.getElementById('editFront');
+    const editBack = document.getElementById('editBack');
+    const updateCardBtn = document.getElementById('updateCardBtn');
+    const resetDefaultBtn = document.getElementById('resetDefaultBtn');
+
+    function saveToLocal() {
+        localStorage.setItem('us_citizenship_flashcards', JSON.stringify(cards));
+    }
+
+    function loadCards() {
+        const stored = localStorage.getItem('us_citizenship_flashcards');
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length === DEFAULT_CARDS.length) {
+                    cards = parsed;
+                    return;
+                }
+            } catch(e) {}
+        }
+        cards = DEFAULT_CARDS.map(c => ({ ...c }));
+        saveToLocal();
+    }
+
+    function resetToDefault() {
+        if (confirm("Reset all cards to the original 20 USCIS questions? Any changes will be lost.")) {
+            cards = DEFAULT_CARDS.map(c => ({ ...c }));
+            saveToLocal();
+            currentIndex = Math.min(currentIndex, cards.length - 1);
+            if (currentIndex < 0) currentIndex = 0;
+            showAnswer = false;
+            refreshAll();
+        }
+    }
+
+    function renderCurrentCard() {
+        if (!cards.length) return;
+        const card = cards[currentIndex];
+        if (showAnswer) {
+            sideLabelEl.innerText = "🔍 Answer (back)";
+            cardTextEl.innerText = card.back || "(no answer)";
+        } else {
+            sideLabelEl.innerText = "❓ Question (front)";
+            cardTextEl.innerText = card.front || "(no question)";
+        }
+        progressIndicator.innerText = `Card ${currentIndex+1} / ${cards.length}`;
+        editFront.value = card.front || "";
+        editBack.value = card.back || "";
+    }
+
+    function refreshAll() {
+        renderCurrentCard();
+        saveToLocal();
+    }
+
+    function toggleFlip() {
+        if (!cards.length) return;
+        showAnswer = !showAnswer;
+        renderCurrentCard();
+    }
+
+    function prevCard() {
+        if (!cards.length) return;
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        showAnswer = false;
+        refreshAll();
+    }
+
+    function nextCard() {
+        if (!cards.length) return;
+        currentIndex = (currentIndex + 1) % cards.length;
+        showAnswer = false;
+        refreshAll();
+    }
+
+    function randomCard() {
+        if (!cards.length) return;
+        let newIndex = Math.floor(Math.random() * cards.length);
+        if (cards.length > 1 && newIndex === currentIndex) {
+            newIndex = (newIndex + 1) % cards.length;
+        }
+        currentIndex = newIndex;
+        showAnswer = false;
+        refreshAll();
+    }
+
+    function updateCurrentCard() {
+        if (!cards.length) return;
+        const newFront = editFront.value.trim();
+        const newBack = editBack.value.trim();
+        if (!newFront) { alert("Question cannot be empty"); return; }
+        if (!newBack) { alert("Answer cannot be empty"); return; }
+        cards[currentIndex].front = newFront;
+        cards[currentIndex].back = newBack;
+        refreshAll();
+        alert("Saved!");
+    }
+
+    function bindEvents() {
+        flashcardDiv.addEventListener('click', toggleFlip);
+        prevBtn.addEventListener('click', prevCard);
+        nextBtn.addEventListener('click', nextCard);
+        randomBtn.addEventListener('click', randomCard);
+        flipBtn.addEventListener('click', toggleFlip);
+        updateCardBtn.addEventListener('click', updateCurrentCard);
+        resetDefaultBtn.addEventListener('click', resetToDefault);
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevCard(); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); nextCard(); }
+            else if (e.key === ' ' || e.key === 'Space') { e.preventDefault(); toggleFlip(); }
+            else if (e.key === 'r' || e.key === 'R') { e.preventDefault(); randomCard(); }
+        });
+    }
+
+    function init() {
+        loadCards();
+        currentIndex = 0;
+        showAnswer = false;
+        refreshAll();
+        bindEvents();
+    }
+
+    init();
+</script>
+</body>
+</html>
