@@ -20,7 +20,7 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;     /* 垂直居中整个内容区域 */
             font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
             padding: 0 1.5rem;
         }
@@ -29,7 +29,7 @@
             text-align: center;
             width: 100%;
             max-width: 600px;
-            margin-top: 8vh;
+            /* 不再设置 margin-top，整体自然垂直居中 */
         }
 
         .main-title {
@@ -38,7 +38,7 @@
             letter-spacing: 2px;
             color: white;
             text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;    /* 标题与按钮的间距，稍微大一点更舒服 */
         }
 
         .card-button {
@@ -74,11 +74,9 @@
         }
 
         @media (max-width: 500px) {
-            .home-container {
-                margin-top: 6vh;
-            }
             .main-title {
                 font-size: 2.8rem;
+                margin-bottom: 2rem;
             }
             .card-button {
                 width: 240px;
@@ -93,7 +91,7 @@
 <body>
     <div class="home-container">
         <h1 class="main-title">FREE TEST</h1>
-        <div class="card-button" id="flashCardBtn">
+        <div class="card-button">
             <span>📇 Flash card</span>
         </div>
     </div>
