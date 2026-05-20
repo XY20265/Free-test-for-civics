@@ -19,63 +19,65 @@
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;  
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+            flex-direction: column;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
             padding: 0 1.5rem;
         }
 
-        .home-container {
+        .title-wrapper {
+            margin-top: 8vh;
             text-align: center;
-            width: 100%;
-            max-width: 600px;
         }
 
         .main-title {
             font-size: 4.2rem;
             font-weight: 800;
             letter-spacing: 2px;
-            color: white;
-            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
-            margin-bottom: 3rem; 
+            color: #0a2f44;           /* 深蓝色，与夕阳暖色形成对比 */
+            text-shadow: 2px 2px 8px rgba(255, 215, 150, 0.6); /* 暖色柔光 */
+        }
+
+        .button-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .card-button {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 250, 240, 0.95); /* 暖白半透明 */
             backdrop-filter: blur(4px);
             border-radius: 2rem;
             padding: 1.6rem 2rem;
             width: 280px;
-            margin: 0 auto;
             cursor: pointer;
             transition: all 0.25s ease;
-            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.6);
-            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 200, 0.8);
+            text-align: center;
         }
 
         .card-button:hover {
             transform: translateY(-6px);
-            box-shadow: 0 30px 40px -14px rgba(0, 0, 0, 0.35);
-            background: white;
-        }
-
-        .card-button:active {
-            transform: translateY(2px);
+            background: rgba(255, 245, 235, 1);
+            box-shadow: 0 30px 40px -14px rgba(0, 0, 0, 0.3);
         }
 
         .card-button span {
             font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #1e3c72, #2b4f8c);
+            background: linear-gradient(135deg, #2c5a7a, #1e3e5c);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
 
         @media (max-width: 500px) {
+            .title-wrapper {
+                margin-top: 6vh;
+            }
             .main-title {
                 font-size: 2.8rem;
-                margin-bottom: 2rem;
             }
             .card-button {
                 width: 240px;
@@ -88,8 +90,10 @@
     </style>
 </head>
 <body>
-    <div class="home-container">
+    <div class="title-wrapper">
         <h1 class="main-title">FREE TEST</h1>
+    </div>
+    <div class="button-wrapper">
         <div class="card-button">
             <span>📇 Flash card</span>
         </div>
