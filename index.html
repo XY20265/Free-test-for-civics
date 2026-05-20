@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE TEST · Flash Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 天空色背景：浅蓝到天蓝渐变 */
+            background: linear-gradient(145deg, #b3e0ff 0%, #7ec8ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+            padding: 1.5rem;
+        }
+
+        /* 主容器 — 让内容居中 */
+        .home-container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* 主标题 */
+        .main-title {
+            font-size: 4.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: white;
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 3rem;
+            word-break: keep-all;
+        }
+
+        /* 卡片样式的按钮 */
+        .card-button {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 1.6rem 2rem;
+            width: 280px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+
+        .card-button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 40px -14px rgba(0, 0, 0, 0.35);
+            background: white;
+        }
+
+        .card-button:active {
+            transform: translateY(2px);
+        }
+
+        /* 按钮内的文字 */
+        .card-button span {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3c72;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #1e3c72, #2b4f8c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* 简单响应式 */
+        @media (max-width: 500px) {
+            .main-title {
+                font-size: 2.8rem;
+            }
+            .card-button {
+                width: 240px;
+                padding: 1.2rem 1.5rem;
+            }
+            .card-button span {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <h1 class="main-title">FREE TEST</h1>
+        <!-- 下方按钮卡片，写着 Flash card -->
+        <div class="card-button" id="flashCardBtn">
+            <span>📇 Flash card</span>
+        </div>
+    </div>
+
+    <!-- 目前第一步仅做视觉；按钮点击行为会在后续步骤中添加 -->
+    <script>
+        // 仅仅预留一个控制台提醒，不添加任何闪卡逻辑（按步骤来）
+        const btn = document.getElementById('flashCardBtn');
+        if (btn) {
+            btn.addEventListener('click', () => {
+                console.log('下一步会实现 Flash card 的完整功能');
+                alert('✨ 这是首页第一步。后续步骤会添加真正的闪卡功能。✨');
+            });
+        }
+    </script>
+</body>
+</html>
