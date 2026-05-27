@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>US Citizenship Test · Flash Cards (Official 51 Questions)</title>
+    <title>US Citizenship Test · Flash Cards (Fixed Answers)</title>
     <style>
         * {
             margin: 0;
@@ -22,7 +22,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
             padding: 2rem;
         }
 
@@ -184,7 +184,7 @@
 <div class="flashcard-app">
     <div class="top-bar">
         <a href="index.html" class="back-home">← Back to Home</a>
-        <div class="progress" id="progressIndicator">Card 1 / 51</div>
+        <div class="progress" id="progressIndicator">Card 1 / 49</div>
     </div>
 
     <div class="flashcard" id="flashcard">
@@ -202,10 +202,11 @@
         <button class="btn btn-primary" id="flipBtn">🔄 Flip</button>
         <button class="btn btn-shuffle" id="shuffleBtn">♻️ Shuffle</button>
     </div>
-    <footer>📌 Cards shuffled on each visit | Click card or press Space to flip | Arrow keys to navigate</footer>
+    <footer>📌 Fixed answers only (no "Answers will vary") | Click card or press Space to flip | Arrow keys to navigate</footer>
 </div>
 
 <script>
+    // ---------- Cards based strictly on the PDF, excluding any "Answers will vary" ----------
     const ORIGINAL_CARDS = [
         { front: "What is the supreme law of the land?", back: "the Constitution" },
         { front: "What does the Constitution do?", back: "sets up the government / defines the government / protects basic rights of Americans" },
@@ -224,12 +225,13 @@
         { front: "Who is in charge of the executive branch?", back: "the President" },
         { front: "Who makes federal laws?", back: "Congress / Senate and House (of Representatives) / (U.S. or national) legislature" },
         { front: "What are the two parts of the U.S. Congress?*", back: "the Senate and House (of Representatives)" },
-        { front: "How many U.S. Senators are there?", back: 100" },
-        { front: "We elect a U.S. Senator for how many years?", back: "6" },
-        { front: "The House of Representatives has how many voting members?", back: "435" },
-        { front: "We elect a U.S. Representative for how many years?", back: "2" },
+        { front: "How many U.S. Senators are there?", back: "one hundred (100)" },
+        { front: "We elect a U.S. Senator for how many years?", back: "six (6)" },
+        { front: "The House of Representatives has how many voting members?", back: "four hundred thirty-five (435)" },
+        { front: "We elect a U.S. Representative for how many years?", back: "two (2)" },
         { front: "Who does a U.S. Senator represent?", back: "all people of the state" },
         { front: "Why do some states have more Representatives than other states?", back: "because of the state's population / because they have more people / because some states have more people" },
+        { front: "We elect a President for how many years?", back: "four (4)" },
         { front: "In what month do we vote for President?*", back: "November" },
         { front: "If the President can no longer serve, who becomes President?*", back: "the Vice President" },
         { front: "If both the President and the Vice President can no longer serve, who becomes President?*", back: "the Speaker of the House" },
@@ -240,10 +242,9 @@
         { front: "What are two Cabinet-level positions?", back: "Secretary of Agriculture / Secretary of Commerce / Secretary of Defense / Secretary of Education / Secretary of Energy / Secretary of Health and Human Services / Secretary of Homeland Security / Secretary of Housing and Urban Development / Secretary of the Interior / Secretary of Labor / Secretary of State / Secretary of Transportation / Secretary of the Treasury / Secretary of Veterans Affairs / Attorney General / Vice President" },
         { front: "What does the judicial branch do?", back: "reviews laws / explains laws / resolves disputes (disagreements) / decides if a law goes against the Constitution" },
         { front: "What is the highest court in the United States?*", back: "the Supreme Court" },
-        { front: "How many justices are on the Supreme Court?", back: "9" },
+        { front: "How many justices are on the Supreme Court?", back: "nine (9)" },
         { front: "Under our Constitution, some powers belong to the federal government. What is one power of the federal government?", back: "to print money / to declare war / to create an army / to make treaties" },
         { front: "Under our Constitution, some powers belong to the states. What is one power of the states?", back: "provide schooling and education / provide protection (police) / provide safety (fire departments) / give a driver's license / approve zoning and land use" },
-        { front: "What is the capital of your state?*", back: "Answers will vary. [District of Columbia residents should answer that D.C. is not a state and does not have a capital. Residents of U.S. territories should name the capital of the territory.]" },
         { front: "What are the two major political parties in the United States?*", back: "Democratic and Republican" },
         { front: "There are four amendments to the Constitution about who can vote. Describe one of them.", back: "Citizens eighteen (18) and older (can vote). / You don't have to pay (a poll tax) to vote. / Any citizen can vote. (Women and men can vote.) / A male citizen of any race (can vote)." },
         { front: "What is one responsibility that is only for United States citizens?*", back: "serve on a jury / vote in a federal election" },
@@ -251,17 +252,16 @@
         { front: "What are two rights of everyone living in the United States?", back: "freedom of expression / freedom of speech / freedom of assembly / freedom to petition the government / freedom of religion / the right to bear arms" },
         { front: "What do we show loyalty to when we say the Pledge of Allegiance?", back: "the United States / the flag" },
         { front: "What is one promise you make when you become a United States citizen?", back: "give up loyalty to other countries / defend the Constitution and laws of the United States / obey the laws of the United States / serve in the U.S. military (if needed) / serve (do important work for) the nation (if needed) / be loyal to the United States" },
-        { front: "How old do citizens have to be to vote for President?*", back: "18 and older" },
+        { front: "How old do citizens have to be to vote for President?*", back: "eighteen (18) and older" },
         { front: "What are two ways that Americans can participate in their democracy?", back: "vote / join a political party / help with a campaign / join a civic group / join a community group / give an elected official your opinion on an issue / call Senators and Representatives / publicly support or oppose an issue or policy / run for office / write to a newspaper" },
         { front: "When is the last day you can send in federal income tax forms?*", back: "April 15" },
-        { front: "When must all men register for the Selective Service?", back: "at age 18 / between 18 and 26" }
+        { front: "When must all men register for the Selective Service?", back: "at age eighteen (18) / between eighteen (18) and twenty-six (26)" }
     ];
 
     let cards = [];
     let currentIndex = 0;
     let showAnswer = false;
 
-    // Fisher-Yates shuffle
     function shuffleArray(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -336,7 +336,6 @@
         refresh();
     }
 
-    // Event listeners
     flashcardDiv.addEventListener('click', toggleFlip);
     prevBtn.addEventListener('click', prevCard);
     nextBtn.addEventListener('click', nextCard);
@@ -352,7 +351,6 @@
         else if (e.key === 's' || e.key === 'S') { e.preventDefault(); shuffleDeck(); }
     });
 
-    // Initialization
     initCards();
     currentIndex = 0;
     showAnswer = false;
